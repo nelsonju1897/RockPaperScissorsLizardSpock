@@ -27,6 +27,9 @@ namespace RockPaperScissorsLizardSpock
             CreatePlayers(numberOfPlayers);
             player1.ChooseName();
             player2.ChooseName();
+            player1.ChooseGesture();
+            player2.ChooseGesture();
+            DetermineRoundWinner();
             
 
             while(player1.score < 2 && player2.score < 2)
@@ -36,6 +39,14 @@ namespace RockPaperScissorsLizardSpock
                 player2.ChooseGesture();
 
                 DetermineRoundWinner();
+                if (player1.score == 2)
+                {
+                    WinCondition();
+                }
+                else if(player2.score == 2)
+                {
+                    WinCondition();
+                }
             }
         }
 
@@ -68,40 +79,63 @@ namespace RockPaperScissorsLizardSpock
 
         public void WinCondition()
         {
-
+            Console.WriteLine("You Won!");
+            Console.ReadLine();
         }
 
-        public void DetermineRoundWinner(string player1Choice, string player2Choice)
+        public void DetermineRoundWinner()
         {
-            if(player1Choice == "Rock" && player2Choice == "Scissors" || player2Choice == "Lizard")
+            if(player1.choice == player2.choice)
             {
-                Console.WriteLine(player1.name + " Wins!");
-                player1.score++;
+                Console.WriteLine("Players tied this round.");
+                Console.WriteLine(player1.score);
+                Console.WriteLine(player2.score);
             }
-            else if (player1Choice == "Paper" && player2Choice == "Rock" || player2Choice == "Spcok")
+            else if((player1.choice == "Rock") && (player2.choice == "Scissors" || player2.choice == "Lizard"))
             {
-                Console.WriteLine(player1.name + " Wins!");
+                Console.WriteLine(player1.name + " Wins the round!");
                 player1.score++;
+                Console.WriteLine(player1.score);
+                Console.WriteLine(player2.score);
+
             }
-            else if (player1Choice == "Scissors" && player2Choice == "Paper" || player2Choice == "Lizard")
+            else if ((player1.choice == "Paper") && (player2.choice == "Rock" || player2.choice == "Spock"))
             {
-                Console.WriteLine(player1.name + " Wins!");
+                Console.WriteLine(player1.name + " Wins the round!");
                 player1.score++;
+                Console.WriteLine(player1.score);
+                Console.WriteLine(player2.score);
             }
-            else if (player1Choice == "Lizard" && player2Choice == "Spock" || player2Choice == "Paper")
+            else if ((player1.choice == "Scissors") && (player2.choice == "Paper" || player2.choice == "Lizard"))
             {
-                Console.WriteLine(player1.name + " Wins!");
+                Console.WriteLine(player1.name + " Wins the round!");
                 player1.score++;
+                Console.WriteLine(player1.score);
+                Console.WriteLine(player2.score);
             }
-            else if (player1Choice == "Spock" && player2Choice == "Lizard" || player2Choice == "Scissors")
+            else if ((player1.choice == "Lizard") && (player2.choice == "Spock" || player2.choice == "Paper"))
             {
-                Console.WriteLine(player1.name + " Wins!");
+                Console.WriteLine(player1.name + " Wins the round!");
                 player1.score++;
+                Console.WriteLine(player1.score);
+                Console.WriteLine(player2.score);
+            }
+            else if ((player1.choice == "Spock") && (player2.choice == "Lizard" || player2.choice == "Scissors"))
+            {
+                Console.WriteLine(player1.name + " Wins the round!");
+                player1.score++;
+                Console.WriteLine(player1.score);
+                Console.WriteLine(player2.score);
+
             }
             else
             {
-                Console.WriteLine(player2.name + " Wins!");
-            }
+                Console.WriteLine(player2.name + " Wins the round!");
+                player2.score++;
+                Console.WriteLine(player1.score);
+                Console.WriteLine(player2.score);
+            } 
+            //Console.WriteLine(player1.name = "'s score is " + player1.score + " " + "Player 2's score " + player2.score);
         }
     }
 }
